@@ -1,0 +1,256 @@
+body{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 200;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.class{
+    margin: 0px 10px;
+}
+
+.card{
+    width: 300px; 
+    height:300px;
+}
+.card:hover{
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+}
+.card-header{
+    height:100px;
+    background-color:#cc91aa;
+    border: 1px solid #e5e5e5;
+    border-radius: 10%;
+    color:white;
+}
+
+.header_title{
+    margin-bottom:0px;
+    overflow:hidden !important;
+    text-overflow: ellipsis;    
+    white-space: nowrap;
+}
+
+.title a{
+    color:white;
+}
+
+.header_section{
+    font-size: 12px;
+}
+
+.card-body{
+    border: 1px solid #e5e5e5;
+    height:150px;
+    padding-top:5px;
+   
+}
+
+.card-body a{
+    color:rgb(0,123,255);
+    font-size: 12px;
+    
+    
+    
+}
+
+.upcoming{
+    color:black;
+}
+.card-body a p{
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space: nowrap;
+}
+
+
+.card-body a:hover{
+    color:rgb(71,122,179);
+    text-decoration: underline;
+}
+
+.card-footer{
+    height:50px;
+    background-color:white;
+    border: 1px solid #e5e5e5;
+
+}
+
+.reset{
+    text-align: center;
+}
+
+#button_reset a{
+    background-color: #efefef;
+    color: black;
+    margin: 0px 30px;
+}
+
+#button_reset button{
+    
+    margin: 0px 30px;
+}
+
+.input_text{
+    width:300px;
+}
+
+nav{
+    background-color: rgb(107,164,83);
+    height: 80px;
+}
+a{
+    text-decoration: none;
+}
+
+.infor{
+    margin-top:150px;
+    border: 1px solid  #dadce0;
+    padding: 70px;
+    border-radius: 5em;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+
+}
+
+.nav-item{
+    margin:0px 10px;
+    padding: 10px 0px;
+}
+
+.nav-item a{
+    color:white;
+}
+
+.nav-item a:hover{
+    color:white;
+}
+
+.bar_nav{
+    display:inline;
+    color:white;
+}
+
+.bar_nav a{
+    color:white;
+    text-decoration: none;
+}
+
+#main_menu{
+    cursor: pointer;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    padding-top:8px;
+
+}
+
+.nav_link{
+    padding-bottom:20px;
+}
+#user_account{
+    text-align: center;
+    color: black;
+    cursor: default;
+}
+.dropdown{
+    position: relative;
+    display: inline-block;
+    margin: auto;
+}
+
+.dropdown-content{
+    border-radius: 7%;
+    padding-top:10px;
+    position: absolute;
+    display: none;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    z-index: 1;
+
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.dropdown-content a:hover {background-color:rgb(204,145,170,.3);}
+.dropdown:hover .dropdown-content {display: block;}
+
+
+#main_menu:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.navbar-nav{
+    flex-direction: row;
+}
+
+
+
+hr{
+    border-width:3px;
+    width:97%;
+}
+
+.round-border{
+    border: solid;
+    color: black;
+    border-radius: 1em;
+    margin: 2em 1em 1em;
+    padding:0 1em 1em;
+    
+}
+
+.head_border{
+    transform: translatey(-70%);
+    width: max-content;
+    background: white;
+    padding: 0 0.15em;
+}
+
+.wrapper{
+    margin:auto;
+    width: 400px; 
+    padding: 40px;
+    border: 1px solid #e5e5e5;
+    display: block;
+  margin-top: 4%;
+
+}
+
+#login-button{
+    width: 100%;
+    margin: 5px 0px;
+    padding: 0.7rem;
+    border-radius: 4px;
+    color: white;
+    background-color: var(--primary);
+    text-transform: uppercase;
+ 
+}
+
+@media (min-width: 768px){
+    .fivecolumns .col-md-2, .fivecolumns .col-sm-2, .fivecolumns .col-lg-2  {
+        width: 25%;
+        *width: 25%;
+    }
+}
+@media (min-width: 1200px) {
+    .fivecolumns .col-md-2, .fivecolumns .col-sm-2, .fivecolumns .col-lg-2 {
+        width: 25%;
+        *width: 25%;
+    }
+}
+@media (min-width: 768px) and (max-width: 979px) {
+    .fivecolumns .col-md-2, .fivecolumns .col-sm-2, .fivecolumns .col-lg-2 {
+        width: 25%;
+        *width: 25%;
+    }
+}
