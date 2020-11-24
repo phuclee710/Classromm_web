@@ -33,7 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT id, full_name,username, password FROM users WHERE username = ?";
+        $sql = "SELECT id, full_name,username, password ,activated FROM users WHERE username = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -41,7 +41,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Set parameters
             $param_username = $username;
-            
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Store result
@@ -50,23 +49,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Check if username exists, if yes then verify password
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $id, $full_name, $username, $hashed_password);
+                    mysqli_stmt_bind_result($stmt, $id, $full_name, $username, $hashed_password ,$activated);
                     if(mysqli_stmt_fetch($stmt)){
-                        if(password_verify($password, $hashed_password)){
-                            // Password is correct, so start a new session
-                            session_start();
-                            
-                            // Store data in session variables
-                            $_SESSION["loggedin"] = true;
-                            $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;   
-                            $_SESSION["full_name"] = $full_name;                          
-                            
-                            // Redirect user to welcome page
-                            header("location: index.php");
-                        } else{
-                            // Display an error message if password is not valid
-                            $password_err = "The password you entered was not valid.";
+                        if($activated === 0){
+                            $error = "This account is not activated.";
+                        }
+                        else{
+                            if(password_verify($password, $hashed_password)){
+                                // Password is correct, so start a new session
+                                session_start();
+                                
+                                // Store data in session variables
+                                $_SESSION["loggedin"] = true;
+                                $_SESSION["id"] = $id;
+                                $_SESSION["username"] = $username;   
+                                $_SESSION["full_name"] = $full_name;                          
+                                
+                                // Redirect user to welcome page
+                                header("location: index.php");
+                            } else{
+                                // Display an error message if password is not valid
+                                $password_err = "The password you entered was not valid.";
+                            }
                         }
                     }
                 } else{
@@ -90,27 +94,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/all.css">
-    <link rel="stylesheet" href="../css/lity.css">
-
-    <!-- Link family font and icon -->
-    <link rel="shortcut icon" href="favicon.ico" />
-    <script src="https://kit.fontawesome.com/5f6bd21d5d.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Lato&family=Noto+Sans+JP&display=swap" rel="stylesheet">
-    
-    <link rel="shortcut icon" href="../img/class_icon.png" type="image/png" sizes="16x16">
-
+    <?php include "includes/head.php"?> 
     <title>Sign In</title>
 </head>
 <body>
     <?php include "includes/nav.php" ?>
 
-    <div class="wrapper" style="">
+    <div class="wrapper" >
         <h2>Login</h2>
         <p>Please fill in your credentials to login.</p>
         <?php 
@@ -146,7 +136,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="password" name="password" class="form-control">
                 <span class="help-block"><?php echo $password_err; ?></span>
             </div>
-            <a href="#" class="forgot">Forgot password?</a>
+            <a href="reset_email.php" class="forgot">Forgot password?</a>
             <button id="login-button">Sign in</button>
 
             <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>

@@ -1,0 +1,14 @@
+{
+    "name": "vendor/classroom",
+    "description": "Day la du an PHP",
+    "authors": [
+        {
+            "name": "PhucLee",
+            "email": "phuclee710@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {
+        "phpmailer/phpmailer": "^6.1"
+    }
+}

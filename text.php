@@ -77,7 +77,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <?php include "includes/nav.php"?>
     <div class="container infor">
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-3 " >
+                <h1 class="my-4">Setting</h1>
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="reset.php">Reset Password</a></li>
+                    <li class="list-group-item"><a href="#">Favorite</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-9">
                 <div class=" reset">
                     <div class="wrapper">
                         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
@@ -101,7 +108,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     </div> 
                 </div>  
             </div>
-        
+        </div>
     </div>   
 </body>
 </html>

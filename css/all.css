@@ -236,6 +236,48 @@ hr{
  
 }
 
+.subscribe-form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.subscribe-form-input {
+    flex: 1;
+    width: 100%;
+    outline: none;
+    padding: 15px 110px 15px 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    transition: all 0.2s linear;
+}
+ 
+.subscribe-form-input:focus {
+    border-color: rgb(31,163,99,0.7);
+}
+ 
+.subscribe-form-input:focus + .subscribe-form-button {
+    background-color: rgb(31,163,99,0.7);
+}
+ 
+.subscribe-form-button {
+    padding: 5px 15px;
+    background-color: #999;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    font-weight: 500;
+    border-radius: 4px;
+    flex-shrink: 0;
+    transition: all 0.2s linear;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
 @media (min-width: 768px){
     .fivecolumns .col-md-2, .fivecolumns .col-sm-2, .fivecolumns .col-lg-2  {
         width: 25%;
