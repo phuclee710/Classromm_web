@@ -1,7 +1,6 @@
 <?php
 // Include config file
 require_once "includes/config.php";
-require_once 'includes/check_email.php'; 
 
 $username = $password = $confirm_password = $full_name = $email = "";
 $username_err = $password_err = $confirm_password_err = $full_name_err = $email_err = "";
@@ -45,27 +44,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $full_name = trim($_POST["full_name"]);
     }
-    $mail = new VerifyEmail();
-    // Set the timeout value on stream
-    $mail->setStreamTimeoutWait(20);
-
-    // Set debug output mode
-    $mail->Debug= TRUE; 
-    $mail->Debugoutput= 'html';
-    // Moved here
-
-    $mail->setEmailFrom('from@email.com');
-
-    // Email to check
-    $email = $_POST["email"]; 
     
-    if($mail->check($email)){ 
-        echo 'Email &lt;'.$email.'&gt; is exist!'; 
-    }elseif(verifyEmail::validate($email)){ 
-        echo 'Email &lt;'.$email.'&gt; is valid, but not exist!'; 
-    }else{ 
-        echo 'Email &lt;'.$email.'&gt; is not valid and not exist!'; 
-    } 
+    $email = trim($_POST["email"]);
+    if(empty(trim($_POST["email"]))){
+        $email_err = "Please enter your email.";     
+    } else if(filter_var($email,FILTER_VALIDATE_EMAIL) === false){
+        $email_err = "Invalid email address";
+    }
     
     if(empty(trim($_POST["password"]))){
         $password_err = "Please enter a password.";     
@@ -98,7 +83,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_email = $email;
             
             if(mysqli_stmt_execute($stmt)){
-                echo "done";
+                header('location:../index.php');
 
             } else{
                 echo "Something went wrong. Please try again later.";

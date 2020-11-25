@@ -1,6 +1,6 @@
 <?php
     session_start();
-    
+
     $email_error ='';
     $email = '';
     $message = '';
@@ -16,13 +16,7 @@
                 $email_error = "Invalid email address";
             }
             else{
-                $result = activeAccount($email,$token);
-                if($result['code'] == 0){
-                    header("location: index.php");
-                }
-                else{
-                    $error = 'Invalid activation url';
-                }
+                reset_password($email);
             }
         }
         
