@@ -83,7 +83,7 @@ body{
 #button_reset a{
     background-color: #efefef;
     color: black;
-    margin: 0px 30px;
+    margin: 20px 30px;
 }
 
 #button_reset button{
@@ -104,7 +104,7 @@ a{
 }
 
 .infor{
-    margin-top:150px;
+    margin-top: 3%;
     border: 1px solid  #dadce0;
     padding: 70px;
     border-radius: 5em;
@@ -180,6 +180,17 @@ a{
     text-align: center;
 }
 
+.dropdown-content button{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    margin: auto;
+    width: auto;
+    height: auto;
+}
+
 .dropdown-content a:hover {background-color:rgb(204,145,170,.3);}
 .dropdown:hover .dropdown-content {display: block;}
 
@@ -225,6 +236,10 @@ hr{
 
 }
 
+.help-block{
+    color: red;
+    font-weight: bold;
+}
 #login-button{
     width: 100%;
     margin: 5px 0px;

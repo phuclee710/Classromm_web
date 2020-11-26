@@ -3,17 +3,13 @@
 require_once "includes/config.php";
 
 $username = $password = $confirm_password = $full_name = $email = "";
-$username_err = $password_err = $confirm_password_err = $full_name_err = $email_err = "";
+$message_err = "";
 
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    $showError = false;  
-    $exists=false;
-    $duplicate=false;
-    $missInfor=false;
     if(empty(trim($_POST["username"]))){
-        $username_err = "Please enter a username.";
+        $message_err = "Please enter a username.";
     } 
     else{
         $sql = "SELECT id FROM users WHERE username = ?";
@@ -27,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 mysqli_stmt_store_result($stmt);
                 
                 if(mysqli_stmt_num_rows($stmt) == 1){
-                    $username_err = "This username is already taken.";
+                    $message_err = "This username is already taken.";
                 } else{
                     $username = trim($_POST["username"]);
                 }
@@ -40,38 +36,42 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     if(empty(trim($_POST["full_name"]))){
-        $full_name_err = "Please enter your name.";     
+        $message_err = "Please enter your name.";     
     } else{
         $full_name = trim($_POST["full_name"]);
     }
     
-    $email = trim($_POST["email"]);
+    
     if(empty(trim($_POST["email"]))){
-        $email_err = "Please enter your email.";     
-    } else if(filter_var($email,FILTER_VALIDATE_EMAIL) === false){
-        $email_err = "Invalid email address";
+        $message_err = "Please enter your email.";     
+    } else if(filter_var($_POST["email"],FILTER_VALIDATE_EMAIL) === false){
+        $message_err = "Invalid email address";
+    }else if (is_email_exists(trim($_POST["email"]),$link)){
+        $message_err = "This email is already exist";
+    }else{
+        $email = trim($_POST["email"]);
     }
     
     if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter a password.";     
+        $message_err = "Please enter a password.";     
     } elseif(strlen(trim($_POST["password"])) < 6){
-        $password_err = "Password must have atleast 6 characters.";
+        $message_err = "Password must have atleast 6 characters.";
     } else{
         $password = trim($_POST["password"]);
     }
     
     if(empty(trim($_POST["confirm_password"]))){
-        $confirm_password_err = "Please confirm password.";     
+        $message_err = "Please confirm password.";     
     } else{
         
         $confirm_password = trim($_POST["confirm_password"]);
-        if(empty($password_err) && ($password != $confirm_password)){
-            $confirm_password_err = "Password did not match.";
+        if(empty($message_err) && ($password != $confirm_password)){
+            $message_err = "Password did not match.";
         }
     }
 
     
-    if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($full_name_err) && empty($email_err)){
+    if(empty($message_err) ){
        
         $sql = "INSERT INTO users (full_name,email,username, password) VALUES (?,?, ?,?)";
         if($stmt = mysqli_prepare($link, $sql)){
@@ -92,23 +92,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             mysqli_stmt_close($stmt);
         }
     }
-    else{
-        
-        if(strlen($username_err)!=0){
-            $exists= $username_err; 
-        } 
-        elseif(strlen($confirm_password_err)!=0){
-            $duplicate = $confirm_password_err; 
-        }
-        elseif(strlen($password_err)!=0){
-            $showError= $confirm_password_err; 
-        }
-
-        elseif(strlen($email_err)!=0){
-            $showError=$email_err; 
-        }
-        
-    }
+  
     
     
     
@@ -143,54 +127,37 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <p>Please fill this form to create an account.</p>
         <?php 
                 error_reporting(0);
-                if($exists){
+                if($message_err){
                     echo ' <div class="alert alert-danger alert-dismissible fade show" role="alert"> 
-                                <strong>Error ! </strong> '. $exists.'
+                                <strong>Error ! </strong> '. $message_err.'
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">  
                                         <span aria-hidden="true">×</span>  
                                     </button> 
                                 </div> '; 
                 }
-                if($duplicate) { 
-    
-                    echo ' <div class="alert alert-danger alert-dismissible fade show" role="alert"> 
-                                <strong>Error ! </strong> '. $duplicate.'
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">  
-                                        <span aria-hidden="true">×</span>  
-                                    </button> 
-                                </div> ';
-                } 
-                if($showError) { 
-    
-                    echo ' <div class="alert alert-danger alert-dismissible fade show" role="alert"> 
-                                <strong>Error ! </strong> '. $showError.'
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">  
-                                        <span aria-hidden="true">×</span>  
-                                    </button> 
-                                </div> '; 
-               } 
+                
             
             ?>
 
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" autocomplete="off" method="post">
-            <div class="form-group <?php echo (!empty($full_name_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group <?php echo (!empty($message_err)) ? 'has-error' : ''; ?>">
                 <label>Full Name</label>
                 <input type="text" name="full_name" class="form-control" value="<?php echo $full_name; ?>">
             </div>  
-            <div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group <?php echo (!empty($message_err)) ? 'has-error' : ''; ?>">
                 <label>Email</label>
                 <input type="text" name="email" class="form-control" value="<?php echo $email; ?>">
             </div>  
-            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group <?php echo (!empty($message_err)) ? 'has-error' : ''; ?>">
                 <label>Username</label>
                 <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
             </div>   
             
-            <div class="form-group <?php echo (!empty($full_name_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group <?php echo (!empty($message_err)) ? 'has-error' : ''; ?>">
                 <label>Password</label>
                 <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
             </div>
-            <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group <?php echo (!empty($message_err)) ? 'has-error' : ''; ?>">
                 <label>Confirm Password</label>
                 <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
             </div>

@@ -2,8 +2,6 @@
     session_start();
 
     $email_error ='';
-    $email = '';
-    $message = '';
     require_once "includes/config.php" ;
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -11,16 +9,17 @@
             $email_error = "Please enter email.";
         } else{
             $email = trim($_POST["email"]);
-            $token = "Vertify Email";
             if(filter_var($email,FILTER_VALIDATE_EMAIL) === false){
                 $email_error = "Invalid email address";
             }
             else{
-                reset_password($email);
+                $email_error = reset_password($email,$link);
             }
         }
         
     }
+
+    
 ?>
 
 <!DOCTYPE html>
@@ -44,29 +43,12 @@
                                     </button> 
                                 </div> '; 
                 }
-                if($error) { 
-    
-                    echo ' <div class="alert alert-danger alert-dismissible fade show" role="alert"> 
-                                <strong>Error ! </strong> '. $error.'
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">  
-                                        <span aria-hidden="true">×</span>  
-                                    </button> 
-                                </div> ';
-                } 
-                if($message) { 
-    
-                    echo ' <div class="alert alert-success alert-dismissible fade show" role="alert"> 
-                                <strong>Error ! </strong> '. $message.'
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">  
-                                        <span aria-hidden="true">×</span>  
-                                    </button> 
-                                </div> '; 
-               } 
+                
             
             ?>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  method="post">
             <div class="subscribe-form <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
-                <input type="email" name="email" class="subscribe-form-input" placeholder="Enter your email" value="<?php echo $email; ?>">
+                <input type="email" name="email" class="subscribe-form-input" placeholder="Enter your email"  value="<?php echo $email; ?>">
                 <input type="submit" class="subscribe-form-button" value="Submit">
 
             </div>
