@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../css/all.css">
     <link rel="stylesheet" href="../css/lity.css">
 
+	<link rel="stylesheet" href="css/createform.css">
     <!-- Link family font and icon -->
     <link rel="shortcut icon" href="favicon.ico" />
     <script src="https://kit.fontawesome.com/5f6bd21d5d.js" crossorigin="anonymous"></script>

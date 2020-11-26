@@ -28,27 +28,35 @@
                                     </span></a>
                             </li>
                             <div class="dropdown-content">
-                                <!-- <a href="../join.php">Vào Lớp Học </a>
-                                <a href="../create.php">Tạo Lớp Học </a> -->
-                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Smzall Modal</button>
+                                <a href="../join.php">Vào Lớp Học </a>
+                                <a href="#" onclick="document.getElementById('id01').style.display='block'">Tạo Lớp Học </a>
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="myModal" role="dialog">
-                                    <div class="modal-dialog modal-sm">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">Modal Header</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>This is a small modal.</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            </div>
+                                <div id="id01" class="modal">
+
+                                    <form class="modal-content animate" action="Subject1.html" method="post">
+                                        <div class="imgcontainer">
+                                        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                                        <h3>Tạo lớp học</h3>
                                         </div>
-                                    </div>
-                                </div>
+
+                                        <div class="container">
+                                        <input type="text" placeholder="Tên lớp học (Bắt buộc)" name="uname" required>
+                                        
+                                        <input type="text" placeholder="Phần" name="psw" required>
+                                        
+                                        <input type="text" placeholder="Chủ đề" name="psw" required>
+                                        
+                                        <input type="text" placeholder="Phòng" name="psw" required>
+                                        
+                                        <input type="password" placeholder="Mật khẩu (nếu có)" name="psw" required>
+                                        </div>
+
+                                        <div class="container" style="background-color:#f1f1f1">
+                                        <button type="submit" onclick="href:Subject1.html">Tạo</button>
+                                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                                        </div>
+                                    </form>
+                               </div>
                             </div>
                             
                         </div>
