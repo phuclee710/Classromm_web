@@ -4,7 +4,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/lity.css">
 
     <!-- Link family font and icon -->
     <link rel="shortcut icon" href="favicon.ico" />
