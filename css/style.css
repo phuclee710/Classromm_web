@@ -211,9 +211,8 @@ hr{
 }
 
 .round-border{
-    border: solid;
+    border-top: solid;
     color: black;
-    border-radius: 1em;
     margin: 2em 1em 1em;
     padding:0 1em 1em;
     
@@ -273,7 +272,7 @@ hr{
     border-color: rgb(31,163,99,0.7);
 }
  
-.subscribe-form-input:focus + .subscribe-form-button {
+.subscribe-form-input:focus  .subscribe-form-button {
     background-color: rgb(31,163,99,0.7);
 }
  
@@ -312,3 +311,99 @@ hr{
     }
 }
 
+.moda {
+    display:none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+.form_create{
+    width: 500px;
+    height: 450px;
+    background-color: white;
+    border-radius: 5%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    margin: auto;
+    margin-top: 15%;
+}
+
+.form_join{
+    width: 500px;
+    height: 220px;
+    background-color: white;
+    border-radius: 5%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    margin: auto;
+    margin-top: 15%;
+}
+
+.create_button{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ 
+}
+.button_create{
+    
+    background-color: rgb(31,163,99);
+    font-weight: bold;
+}
+
+.button_create:hover{
+    background-color: rgb(31,163,99,0.5);
+}
+
+
+.infor_create input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    /* border: 1px solid #ccc; */
+    box-sizing: border-box;
+  
+}
+
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    padding-top: 20px ;
+    position: relative;
+}
+
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+    
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+    
+}
+
+
+  
+  
