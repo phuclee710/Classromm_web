@@ -4,14 +4,14 @@
     error_reporting(0);
     $class_code = $class_name = $section = $detail = $room = "";
     $message_err = $err = "";
-    if(isset($_GET['email'])){ 
+    if(isset($_GET['email']) ){ 
         $email = $_SESSION['email'];
         if(filter_var($email, FILTER_SANITIZE_EMAIL) === false ){
-            $err = "Your email is not valid ! Please login again";
+            $err = "Your email is not valid ! Please logsin again";
         }
 
     }
-    else if($_SERVER["REQUEST_METHOD"] == "POST"){
+    else if($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_GET['edit'])){
         
         if(trim($_POST["class_code"])){
             $email = $_SESSION['email'];
@@ -63,7 +63,7 @@
             echo "<meta http-equiv='refresh' content='0'>";
 
         } 
-        else if( !empty(trim($_POST["class_name"]))){
+        else if( trim($_POST["class_name"])){
             $email = $_SESSION["email"] ;
             if(empty(trim($_POST["class_name"]))){
                 $message_err = "Please enter a class name.";
@@ -71,6 +71,8 @@
             else{
                 $class_name =$_POST["class_name"];
             }
+           
+
             $section = $_POST['section'];
             $detail = $_POST['detail'];
             $room = $_POST['room'];
@@ -124,8 +126,6 @@
         mysqli_close($link);
 
         
-    }else {
-        $err = 'Your email is not valid ! Please login again';
     }
 
 ?>
@@ -146,6 +146,66 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content modal-dialog-centered">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Tham Gia Lớp Học</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">    
+                        <form class=" animate" id="create_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                            <div class="form_group">
+                                <div class="container infor_create" <?php echo (!empty($message_err)) ? 'has-error' : ''; ?>>
+                                    <input type="text"  placeholder="Mã Lớp" name="class_code"  value="<?php echo $class_code;?>">
+                                </div>
+                            </div>
+                        </form>  
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="location.href='../index.php'">Hủy</button>
+                        <button type="submit"  class="btn btn-green" form="create_form" value="Submit">Tham Gia</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+         
+        <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content modal-dialog-centered">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Tạo Lớp Học</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">    
+                        <form class=" animate" id="infor_create" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                <div class="container infor_create">
+                                    <input type="text" placeholder="Tên Lớp" name="class_name" value="<?php echo $class_name; ?>">
+                                
+                                    <input type="text" placeholder="Đặc tả" name="section" value="<?php echo $section; ?>">
+                                
+                                    <input type="text" placeholder="Chi Tiết" name="detail" value="<?php echo $detail; ?>">
+                                
+                                    <input type="text" placeholder="Phòng" name="room" value="<?php echo $room; ?>">
+                                
+                                </div>
+                                
+                        </form>   
+                                    
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="location.href='../index.php'">Hủy</button>
+                        <button type="submit"  class="btn btn-green" form="infor_create" value="Submit">Tạo Lớp</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+                       
         <?php
             error_reporting(0);
             session_start();
@@ -162,60 +222,8 @@
                                     </span></a>
                             </li>
                             <div class="dropdown-content">
-                                <a onclick="document.getElementById('join_modal').style.display='block'">Vào Lớp Học </a>
-                                <div class="moda " id ="join_modal">                                                                      
-                                    <div class="modal_content container" >
-                                        <form class=" animate" id="create_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                                            <div class="form_join">
-                                                <div class="imgcontainer">
-                                                    <h3>Tham gia lớp học</h3>
-                                                    
-                                                </div>
-                                                <div class="container infor_create" <?php echo (!empty($message_err)) ? 'has-error' : ''; ?>>
-                                                    <input type="text"  placeholder="Mã Lớp" name="class_code"  value="<?php echo $class_code;?>">
-                                    
-                                                </div>
-                                                <div class="create_button ">
-                                                    <button class="button_create" type="submit">Tham Gia</button>
-                                                    <button class="button_create" type="button" onclick="document.getElementById('join_modal').style.display='none'" >Hủy</button>
-                                                </div>
-                                            </div>
-                                        </form>                                           
-                                    </div>
-                                </div>
-                                <a onclick="document.getElementById('create_modal').style.display='block'" >Tạo Lớp Học</a>                            
-                                <div class="moda " id ="create_modal">                                                                      
-                                    <div class="modal_content container" >
-                                        <form class=" animate" id="create_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                                            <div class="form_create">
-                                                <div class="imgcontainer">
-                                                    <h3>Tạo lớp học</h3>
-                                                </div>
-                                                <div class="container infor_create">
-                                                    <input type="text" placeholder="Tên Lớp" name="class_name" value="<?php echo $class_name; ?>">
-                                                
-                                                    <input type="text" placeholder="Đặc tả" name="section" value="<?php echo $section; ?>">
-                                                
-                                                    <input type="text" placeholder="Chi Tiết" name="detail" value="<?php echo $detail; ?>">
-                                                
-                                                    <input type="text" placeholder="Phòng" name="room" value="<?php echo $room; ?>">
-                                                
-                                                </div>
-                                                <div class="create_button ">
-                                                    <button class="button_create" type="submit">Tạo</button>
-                                                    <button class="button_create" type="button" onclick="document.getElementById('create_modal').style.display='none'" >Hủy</button>
-                                                </div>
-                                            </div>
-                                        </form>                                           
-                                    </div>
-                                </div>
-                            
-                              
-                               
-
-                                
-                                
-                                                            
+                                <button type="button" class="btn" data-toggle="modal" data-target="#Modal">Tham Gia Lớp</button>
+                                <button type="button" class="btn" data-toggle="modal" data-target="#Modal1">Tạo Lớp Học</button>
                             </div>
                             
                         </div>
