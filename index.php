@@ -10,7 +10,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 require_once "includes/config.php";
 $class_name_edit = $section_edit = $detail_edit = $room_edit = "";
-if(isset($_GET['class_code']) && !isset($_GET['edit'])){
+if(isset($_GET['class_code']) && !isset($_GET['edit']) && !isset($_GET['detail'])){
     $class_code = $_GET['class_code'];
     $email = $_SESSION['email'];
     $sql = "SELECT * FROM list_class where email = '$email' and class_code = '$class_code' ";
@@ -44,7 +44,7 @@ if(isset($_GET['class_code']) && !isset($_GET['edit'])){
     mysqli_close($link);
 }
 
-else if($_SERVER["REQUEST_METHOD"] == "POST"){
+else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['edit'])){
     $email = $_SESSION['email'];
     $class_code = $_SESSION['class_code'];
     if(!empty(trim($_POST["class_name_edit"]))){
@@ -90,7 +90,7 @@ else if($_SERVER["REQUEST_METHOD"] == "POST"){
     <?php include "includes/nav.php"?> 
         <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
+                <div class="modal-content modal-dialog-centered">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Tạo Lớp Học</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -172,19 +172,21 @@ else if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $qry1= mysqli_query($link,$sql1);
                     $sql2 = "SELECT * FROM users a,list_class b where a.email = b.email and b.teacher = 1 and b.class_code = '$class_code' ";
                     $qry2= mysqli_query($link,$sql2);   
-                    
+                    $background_color = $row['background_color'];
                     while($row1=mysqli_fetch_assoc($qry1)){
                         while($row2=mysqli_fetch_assoc($qry2)){
-                
+                            if($row1['section'] == NULL){
+                                $row1['section'] = 'section';
+                            }
                             ?>
                                 <div class="fivecolumns .col-md-2, .fivecolumns .col-sm-2, .fivecolumns .col-lg-2  m-3" >
                                     <div class="card " >
-                                        <div class="card-header">
-                                            <div class="title">
+                                        <div class="card-header" style="background-color:$background_color;">
+                                            <div class="title" >
                                                 <div class="row">
                                                     <div class="col-10">
-                                                        <div class="head">
-                                                            <a href="#">
+                                                        <div class="head" >
+                                                            <a href="../index.php?email=<?php echo $email ?>&class_code=<?php echo $class_code?>&detail=<?php echo 'true'?>">
                                                                 <h4 class="header_title" id = "class_code"><?php echo $row1['class_name']; ?></h4>
                                                                 <span  class="header_section"><?php echo $row1['section']; ?></span>
                                                             </a>
@@ -249,6 +251,7 @@ else if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $class_code = $row['class_code'];
                     $sql1 = "SELECT * FROM classroom WHERE class_code = '$class_code'";
                     $qry1= mysqli_query($link,$sql1);
+                    $background_color= $row['background_color'];
                     while($row1=mysqli_fetch_assoc($qry1)){
                         if($row1['section'] == NULL){
                             $row1['section'] = 'section';
@@ -256,11 +259,11 @@ else if($_SERVER["REQUEST_METHOD"] == "POST"){
                         ?>
                             <div class="fivecolumns .col-md-2, .fivecolumns .col-sm-2, .fivecolumns .col-lg-2  m-3" >
                                 <div class="card " >
-                                    <div class="card-header">
+                                    <div class="card-header" style="background-color:<?php echo $background_color;?>">
                                         <div class="title">
                                             <div class="row">
                                                 <div class="col-10">
-                                                    <a href="#">
+                                                    <a href="../index.php?email=<?php echo $email ?>&class_code=<?php echo $class_code?>&detail=<?php echo 'true'?>">
                                                         <h4 class="header_title" ><?php echo $row1['class_name']; ?></h4>
                                                         <span  class="header_section"><?php echo $row1['section']; ?></span>
                                                     </a>
@@ -312,6 +315,7 @@ else if($_SERVER["REQUEST_METHOD"] == "POST"){
 if(isset($_GET['edit']) && isset($_GET['class_code'])){
     $class_code = $_GET['class_code'];
     $_SESSION['class_code'] = $class_code;
+    $_SESSION['edit'] = 'true';
     echo "<script>modal2();</script>";
 }
 ?>

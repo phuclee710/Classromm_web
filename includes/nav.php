@@ -13,10 +13,11 @@
     }
     else if($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_GET['edit'])){
         
+        
         if(trim($_POST["class_code"])){
             $email = $_SESSION['email'];
             $class_code = trim($_POST["class_code"]);
-            if( $class_code  == 0){
+            if( $class_code  === 0){
                 header("location:../index.php?email=$email");
             }
             else if(empty($message_err)){
@@ -108,8 +109,6 @@
                                 
                                 header("location:../index.php?email=$email");
                             }
-                        }else{
-                            $message_err = "You have already join in the classroom.";
                         }
                         mysqli_stmt_close($stmt1);
                     }
@@ -147,8 +146,8 @@
             </div>
         </div>
         <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content modal-dialog-centered">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content ">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Tham Gia Lớp Học</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -156,10 +155,10 @@
                         </button>
                     </div>
                     <div class="modal-body">    
-                        <form class=" animate" id="create_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                        <form class=" animate" id="create_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" >
                             <div class="form_group">
                                 <div class="container infor_create" <?php echo (!empty($message_err)) ? 'has-error' : ''; ?>>
-                                    <input type="text"  placeholder="Mã Lớp" name="class_code"  value="<?php echo $class_code;?>">
+                                    <input type="text"  placeholder="Mã Lớp" name="class_code" id ="class_code" value="<?php echo $class_code;?>">
                                 </div>
                             </div>
                         </form>  
@@ -173,8 +172,8 @@
         </div>
          
         <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content modal-dialog-centered">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Tạo Lớp Học</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
