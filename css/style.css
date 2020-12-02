@@ -276,6 +276,13 @@ hr{
     padding: 0 0.15em;
 }
 
+.head_border h2{
+    color:rgb(31,163,99);
+}
+
+.round-border{
+    border-color: rgb(31,163,99);
+}
 .wrapper{
     margin:auto;
     width: 400px; 
@@ -438,10 +445,177 @@ hr{
     animation: animatezoom 0.6s
 }
 
+.container_detail{
+    margin-top: 35px;
+}
 
+.view{
+    background-image: url("https://gstatic.com/classroom/themes/img_bookclub.jpg"); 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    background-position: center center;
+    height:250px;
+    margin-bottom: 50px;
+    border-radius: 15px;
+    box-shadow: 0px 3px 16px 0px rgba(0,0,0,0.5);
+}
+
+.view  h1{
+    color: white;
+    padding: 15px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    width: 100%;
+   
+}
+
+.up_coming{
+    border-radius: 10px;
+    border: 1px solid rgb(218,220,224);
+    align-items: center;
+    display: inline-block;
+    width: 100%;
+    padding: 0px 30px;
+}
+
+.up_coming li{
+    color:rgb(151,153,201);
+    width: 100%;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+.up_coming p{
+    font-weight: bold;
+}
+
+.up_coming span{
+    color:rgb(151,153,201,0.7);
+    font-size: 14px;
+}
+
+.up_coming a{
+    font-size: 14px;
+    color:rgb(69,151,122);
+    float: right;
+}
+
+.up_coming a:hover{
+    color:rgb(69,151,122,0.7);
+}
+
+
+.nav_left_detail{
+    width: 35%;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    order: 1;
+
+}
+
+.nav_detail{
+    display:flex;
+    color: white;
+}
+
+.nav_middle_detail{
+    width: 35%;
+    order: 2;
+}
+
+.nav_right_detail{
+    width: 10%;
+    order: 3;
+
+
+}
+
+.action{
+    border-bottom: 2px solid white;
+    font-weight: bold;
+  
+}
+
+.nav_left_detail h4{ 
+    display:inline
+}
+
+.middle_item:hover{
+    background-color:rgb(240,240,240,0.3);
+    margin-bottom: 0px;
+}
+
+.navbar{
+    background-color:rgb(31,163,99);
+    height: 100px;
+    color: white;
+}
+
+.people{
+    height: 32px;
+    width: 32px;
+    font-size: 20px;
+}
+
+.list_member{
+    border-bottom: 1px solid rgb(0,0,0,0.2);
+}
+
+.list_member:last-child{
+    border-bottom: 1px solid white;
+}
 
 .select_head span{
     float: right;
+}
+
+.post_comment{
+    height:200px;
+    border-radius: 20px;
+    box-shadow: 2px 1px 3px 0px rgba(0,0,0,0.5);
+
+}
+.post_text{
+    padding-top: 10px;
+
+}
+#post_textarea{
+    display: block;
+    width: 90%;
+    overflow: hidden;
+    resize: both;
+    
+    margin: auto;
+    margin-top: 10px;
+    background-color: rgb(248,249,250);
+    color: black;
+}
+
+#post_textarea:focus{
+    border-bottom: 3px solid rgb(31,163,99);
+}
+
+#button_post{
+    background-color:  rgb(31,163,99);
+    border-radius: 10px;
+    float: right;
+    margin-right:5%;
+    width: 60px;
+}
+
+.post_button{
+    margin-top:10px;
+}
+
+#url_post{
+    margin-left:5%;
+
 }
 @-webkit-keyframes animatezoom {
     from {-webkit-transform: scale(0)} 
@@ -459,7 +633,35 @@ hr{
         float: none;
     }
     
+    
 }
+
+
+@media all and (max-width: 1024px) {
+   
+    .navbar{
+        height: 150px;
+        color: white;
+    }
+    .nav_middle_detail {
+        width: 100%;
+        order: 3;
+        text-align: center;
+      }
+
+      .navbar-nav{
+        display: flex;
+        justify-content: center;
+      }
+      
+      .nav_left_detail{
+        width: 50%;
+      }
+      .nav_right_detail{
+        width:10%;
+        order:2;
+      }
+  }
 
 
   

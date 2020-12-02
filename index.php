@@ -186,7 +186,7 @@ else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['edit'])){
                                                 <div class="row">
                                                     <div class="col-10">
                                                         <div class="head" >
-                                                            <a href="../index.php?email=<?php echo $email ?>&class_code=<?php echo $class_code?>&detail=<?php echo 'true'?>">
+                                                            <a href="../detail.php?email=<?php echo $email ?>&class_code=<?php echo $class_code?>&detail=<?php echo 'true'?>&full_name=<?php echo $_SESSION['full_name']?>">
                                                                 <h4 class="header_title" id = "class_code"><?php echo $row1['class_name']; ?></h4>
                                                                 <span  class="header_section"><?php echo $row1['section']; ?></span>
                                                             </a>
@@ -263,7 +263,7 @@ else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['edit'])){
                                         <div class="title">
                                             <div class="row">
                                                 <div class="col-10">
-                                                    <a href="../index.php?email=<?php echo $email ?>&class_code=<?php echo $class_code?>&detail=<?php echo 'true'?>">
+                                                    <a href="../detail.php?email=<?php echo $email ?>&class_code=<?php echo $class_code?>&detail=<?php echo 'true'?>&teacher=<?php echo 'true'?>&full_name=<?php echo $_SESSION['full_name']?>">
                                                         <h4 class="header_title" ><?php echo $row1['class_name']; ?></h4>
                                                         <span  class="header_section"><?php echo $row1['section']; ?></span>
                                                     </a>
