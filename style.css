@@ -1,0 +1,225 @@
+main{
+    background-color: whitesmoke;
+}
+
+.card{   
+    margin: 20px 0px 20px 10px; 
+}
+
+.card-groups{
+    margin-top:80px;
+    background-color: #8a8a8a;
+    padding: 0px 50px 0px 50px;
+    min-height: 100vh;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 60px;
+    left: 0;
+    background-color: #b9b9b9;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 10px 10px 10px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closeMenubtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.joinsrc .closeJoinbtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.joinsrc {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 60px;
+    right: 0;
+    background-color: #def3fd;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    text-align:center;
+}
+
+.joinsrc a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.createsrc .closeCreatebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.createsrc {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 60px;
+    right: 0;
+    background-color: #def3fd;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.createsrc a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+label {
+    font-size: larger;
+    font-weight: bold;
+    text-align: left;
+}
+
+.navbar {
+    background-color: #e6deb8;  
+    width: 100%;
+    padding: 8px 0px 8px 16px;
+}
+
+.nav-tabs a {
+    font-size: 30px;
+    margin-right: 20px;
+    color: black;
+}
+
+.nav-tabs {
+    margin-left: 400px;
+    margin-top: 80px;
+}
+
+#homesrc {
+    min-height: 100vh;
+}
+
+#classworksrc {
+    min-height: 100vh;
+}
+
+#peoplesrc {
+    min-height: 100vh;
+}
+
+.navbar-brand {
+    margin-left: 10px;
+    font-size: 36px;
+}
+
+.navbar span {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+form {
+    width: 30%;
+    min-width: 444px;
+    margin: 30px auto;
+}
+
+table {
+    margin: auto;
+    padding: 16px 26px;
+    border-radius: 10px;
+}
+
+#joinbtn {
+    margin-top: 10px;
+    margin-left: 5px;
+    border: 2px solid rgba(141, 140, 140, 0.644);
+    padding: 10px 30px;
+    background-color: #d8d8d8;
+    border-radius: 4px;
+}
+
+#createbtn, #backbtn:hover {
+    border: 1px solid rgba(141, 140, 140, 0.644);
+    padding: 10px 30px;
+    background-color: #ececec;
+    border-radius: 4px;
+}
+
+#joinbtn:hover {
+    background-color: #ffffff
+}
+
+#createbtn:hover, #backbtn:hover {
+    background-color: #ffdfd3
+}
+
+input[type="text"] {
+    height: 44px;
+    margin-top: 10px;
+    min-width: 250px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(141, 140, 140, 0.644);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #fcf7de; 
+    font-size: 30px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+.background{
+    width: 500px;
+    height: 200px;
+    margin: auto;
+    margin-top: 250px;
+}
+
+.fontColor{
+    color: black;
+}
+
+
+
